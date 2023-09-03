@@ -1,9 +1,6 @@
--- criação do banco de dados para o cenário de E-commerce 
--- drop database ecommerce;
 create database ecommerce;
 use ecommerce;
 
--- criar tabela cliente
 create table clients(
 		idClient int auto_increment primary key,
         Fname varchar(10),
@@ -31,11 +28,6 @@ create table product(
 
 alter table product auto_increment=1;
 
-
--- para ser continuado no desafio: termine de implementar a tabela e crie a conexão com as tabelas necessárias
--- além disso, reflita essa modificação no diagrama de esquema relacional
--- criar constraints relacionadas ao pagamento
-
 create table payments(
 	idclient int,
     idPayment int,
@@ -44,9 +36,6 @@ create table payments(
     primary key(idClient, idPayment)
 );
 
-
--- criar tabela pedido
--- drop table orders;
 create table orders(
 	idOrder int auto_increment primary key,
     idOrderClient int,
@@ -61,7 +50,6 @@ alter table orders auto_increment=1;
 
 desc orders;
 
--- criar tabela estoque
 create table productStorage(
 	idProdStorage int auto_increment primary key,
     storageLocation varchar(255),
@@ -69,8 +57,6 @@ create table productStorage(
 );
 alter table productStorage auto_increment=1;
 
-
--- criar tabela fornecedor
 create table supplier(
 	idSupplier int auto_increment primary key,
     SocialName varchar(255) not null,
@@ -82,9 +68,8 @@ alter table supplier auto_increment=1;
 
 desc supplier;
 
--- criar tabela vendedor
 create table seller(
-	idSeller int auto_increment primary key,
+    idSeller int auto_increment primary key,
     SocialName varchar(255) not null,
     AbstName varchar(255),
     CNPJ char(15),
@@ -97,11 +82,8 @@ create table seller(
 
 alter table seller auto_increment=1;
 
-
--- tabelas de relacionamentos M:N
-
 create table productSeller(
-	idPseller int,
+    idPseller int,
     idPproduct int,
     prodQuantity int default 1,
     primary key (idPseller, idPproduct),
@@ -112,7 +94,7 @@ create table productSeller(
 desc productSeller;
 
 create table productOrder(
-	idPOproduct int,
+    idPOproduct int,
     idPOorder int,
     poQuantity int default 1,
     poStatus enum('Disponível', 'Sem estoque') default 'Disponível',
@@ -123,7 +105,7 @@ create table productOrder(
 );
 
 create table storageLocation(
-	idLproduct int,
+    idLproduct int,
     idLstorage int,
     location varchar(255) not null,
     primary key (idLproduct, idLstorage),
@@ -132,7 +114,7 @@ create table storageLocation(
 );
 
 create table productSupplier(
-	idPsSupplier int,
+    idPsSupplier int,
     idPsProduct int,
     quantity int not null,
     primary key (idPsSupplier, idPsProduct),
