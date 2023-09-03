@@ -2,7 +2,7 @@ create database ecommerce;
 use ecommerce;
 
 create table clients(
-		idClient int auto_increment primary key,
+	idClient int auto_increment primary key,
         Fname varchar(10),
         Minit char(3),
         Lname varchar(20),
@@ -13,12 +13,8 @@ create table clients(
 
 alter table clients auto_increment=1;
 
--- desc clients;
--- criar tabela produto
-
--- size = dimensão do produto
 create table product(
-		idProduct int auto_increment primary key,
+	idProduct int auto_increment primary key,
         Pname varchar(255) not null,
         classification_kids bool default false,
         category enum('Eletrônico','Vestimenta','Brinquedos','Alimentos','Móveis') not null,
@@ -29,7 +25,7 @@ create table product(
 alter table product auto_increment=1;
 
 create table payments(
-	idclient int,
+    idclient int,
     idPayment int,
     typePayment enum('Boleto','Cartão','Dois cartões'),
     limitAvailable float,
@@ -37,7 +33,7 @@ create table payments(
 );
 
 create table orders(
-	idOrder int auto_increment primary key,
+    idOrder int auto_increment primary key,
     idOrderClient int,
     orderStatus enum('Cancelado','Confirmado','Em processamento') default 'Em processamento',
     orderDescription varchar(255),
@@ -51,14 +47,14 @@ alter table orders auto_increment=1;
 desc orders;
 
 create table productStorage(
-	idProdStorage int auto_increment primary key,
+    idProdStorage int auto_increment primary key,
     storageLocation varchar(255),
     quantity int default 0
 );
 alter table productStorage auto_increment=1;
 
 create table supplier(
-	idSupplier int auto_increment primary key,
+    idSupplier int auto_increment primary key,
     SocialName varchar(255) not null,
     CNPJ char(15) not null,
     contact char(11) not null,
